@@ -1,4 +1,4 @@
-version: "3"
+#version: "3"
 services:
   nginx:
     build:
@@ -151,7 +151,7 @@ services:
     networks:
       - default
 
-  redis6:
+  redis62:
     image: redis:${REDIS62_VERSION}
     container_name: redis62
     ports:
