@@ -136,16 +136,46 @@ services:
     networks:
       - default
 
-  redis:
-    image: redis:${REDIS_VERSION}
-    container_name: redis
+  redis5:
+    image: redis:${REDIS5_VERSION}
+    container_name: redis5
     ports:
       - "${REDIS_HOST_PORT}:6379"
     volumes:
-      - ${REDIS_CONF_FILE}:/etc/redis.conf:ro
+      - ${REDIS_CONF_FILE}:/etc/redis5.conf:ro
       - ${DATA_DIR}/redis:/data/:rw
     restart: always
-    entrypoint: ["redis-server", "/etc/redis.conf"]
+    entrypoint: ["redis-server", "/etc/redis5.conf"]
+    environment:
+      TZ: "$TZ"
+    networks:
+      - default
+
+  redis6:
+    image: redis:${REDIS62_VERSION}
+    container_name: redis62
+    ports:
+      - "${REDIS_HOST_PORT}:6379"
+    volumes:
+      - ${REDIS_CONF_FILE}:/etc/redis62.conf:ro
+      - ${DATA_DIR}/redis:/data/:rw
+    restart: always
+    entrypoint: ["redis-server", "/etc/redis62.conf"]
+    environment:
+      TZ: "$TZ"
+    networks:
+      - default
+
+  redis72:
+    image: redis:${REDIS72_VERSION}
+    container_name: redis72
+    ports:
+      - "${REDIS_HOST_PORT}:6379"
+    volumes:
+      - ${REDIS_CONF_FILE}:/etc/redis72.conf:rw
+      - ${DATA_DIR}/redis:/data/:rw
+    restart: always
+    entrypoint: ["redis-server", "/etc/redis72.conf"]
     environment:
       TZ: "$TZ"
     networks:
