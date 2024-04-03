@@ -199,7 +199,7 @@ services:
     networks:
       - default
 
-  @ 小说阅读器
+  #小说阅读器
   # https://github.com/hectorqin/reader
   reader:
     image: hectorqin/reader
@@ -221,6 +221,21 @@ services:
       READER_APP_SECURE: false
       READER_APP_SECUREKEY: admin
       TZ: "$TZ"
+    networks:
+      - default
+      
+  etcd:
+    image: bitnami/etcd
+    container_name: etcd
+    ports:
+      - "2379:2379"
+      - "2380:2380"
+    volumes:
+      - ./data/etcd:/bitnami/etcd/data
+    restart: always
+    environment:
+      ALLOW_NONE_AUTHENTICATION=yes
+      ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379
     networks:
       - default
 
