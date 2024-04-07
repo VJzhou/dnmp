@@ -223,19 +223,19 @@ services:
       TZ: "$TZ"
     networks:
       - default
-      
+
   etcd:
     image: bitnami/etcd
     container_name: etcd
     ports:
       - "2379:2379"
       - "2380:2380"
-    volumes:
-      - ./data/etcd:/bitnami/etcd/data
+    #volumes:
+    #  - ./data/etcd:/bitnami/etcd/data:rw
     restart: always
     environment:
-      ALLOW_NONE_AUTHENTICATION=yes
-      ETCD_ADVERTISE_CLIENT_URLS=http://0.0.0.0:2379
+      ALLOW_NONE_AUTHENTICATION: yes
+      ETCD_ADVERTISE_CLIENT_URLS: http://etcd:2379
     networks:
       - default
 
