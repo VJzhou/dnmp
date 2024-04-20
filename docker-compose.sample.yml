@@ -239,6 +239,26 @@ services:
     networks:
       - default
 
+  canal-server:
+    image: canal/canal-server:latest
+    container_name: canal-server
+    restart: unless-stopped
+    ports:
+      - "11111:11111"
+    environment:
+      canal.auto.scan: false
+      canal.instance.master.address: mysql:3306
+      canal.instance.dbUsername: canal
+      canal.instance.dbPassword: canal
+      canal.instance.filter.regex: .*\\..*
+      canal.destinations: test
+      canal.instance.connectionCharset: utf8mb4
+      canal.instance.tsdb.enable: true
+    #volumns:
+    #  - ./logs/canal/test:/home/admin/canal-server/logs/
+    networks:
+      - default
+
 #  mongodb:
 #    image: mongo:${MONGODB_VERSION}
 #    container_name: mongodb

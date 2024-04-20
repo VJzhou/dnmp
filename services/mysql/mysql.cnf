@@ -24,6 +24,10 @@ slow-query-log-file     = /var/log/mysql/mysql.slow.log
 log-error               = /var/log/mysql/mysql.error.log
 
 default-time-zone       = '+8:00'
+binlog_format=ROW
+log_bin=mysql_bin
+server_id=1
 
 [mysql]
 default-character-set   = utf8mb4
+
