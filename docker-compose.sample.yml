@@ -276,13 +276,14 @@ services:
     image: zookeeper
     container_name: zookeeper
     restart: always
-    prots:
+    ports:
       - "2181:2181"
     networks:
       - default
 
   kafka:
     image: wurstmeister/kafka
+    #image: confluentinc/cp-kafka  
     container_name: kafka
     restart: always
     ports:
